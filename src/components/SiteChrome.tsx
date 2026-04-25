@@ -62,6 +62,7 @@ export function SiteHeader() {
         <Link to="/" className={linkClass(path === "/")}>Home</Link>
         <Link to="/citizen" className={linkClass(path.startsWith("/citizen"))}>Citizen</Link>
         <Link to="/dashboard" className={linkClass(path.startsWith("/dashboard"))}>Authority</Link>
+        <Link to="/offline" className={linkClass(path.startsWith("/offline"))}>Mesh</Link>
         <Link to="/about" className={linkClass(path.startsWith("/about"))}>About</Link>
       </nav>
     </header>
