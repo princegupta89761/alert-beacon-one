@@ -150,5 +150,38 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   }
+
+  h1, h2, h3, h4 {
+    font-family: "Georgia", "Times New Roman", serif;
+    letter-spacing: -0.01em;
+  }
+}
+
+@layer utilities {
+  .bg-gov-gradient { background: var(--gradient-gov); }
+  .text-gov-navy { color: var(--gov-navy); }
+  .bg-gov-navy { background-color: var(--gov-navy); }
+  .bg-gov-navy-deep { background-color: var(--gov-navy-deep); }
+  .border-gov-gold { border-color: var(--gov-gold); }
+  .text-gov-gold { color: var(--gov-gold); }
+  .shadow-elegant { box-shadow: var(--shadow-elegant); }
+
+  .severity-critical { background-color: var(--severity-critical); color: white; }
+  .severity-high { background-color: var(--severity-high); color: white; }
+  .severity-medium { background-color: var(--severity-medium); color: oklch(0.2 0 0); }
+  .severity-low { background-color: var(--severity-low); color: white; }
+
+  @keyframes siren-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 oklch(0.55 0.22 27 / 0.6); }
+    50% { box-shadow: 0 0 0 18px oklch(0.55 0.22 27 / 0); }
+  }
+  .animate-siren { animation: siren-pulse 1.4s ease-out infinite; }
+
+  @keyframes ticker {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
+  .animate-ticker { animation: ticker 28s linear infinite; }
 }
