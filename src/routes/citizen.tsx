@@ -119,6 +119,16 @@ function CitizenPage() {
         </div>
 
         <section className="mt-10">
+          <h3 className="font-serif text-xl text-gov-navy font-semibold">Offline / Mesh Simulator</h3>
+          <p className="text-sm text-muted-foreground mt-1 max-w-2xl">
+            Simulate an internet outage to see how alerts still reach citizens via Bluetooth mesh and local sirens.
+          </p>
+          <div className="mt-3">
+            <MeshSimulator latestAlert={headline ?? null} />
+          </div>
+        </section>
+
+        <section className="mt-10">
           <h3 className="font-serif text-xl text-gov-navy font-semibold">Broadcast History</h3>
           <div className="mt-3 border rounded-lg overflow-hidden">
             <table className="w-full text-sm">
