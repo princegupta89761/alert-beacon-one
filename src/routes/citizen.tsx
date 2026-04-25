@@ -4,6 +4,7 @@ import { useAlerts } from "@/lib/hooks";
 import {
   SmsPanel, AppPanel, TwitterPanel, RadioPanel, SirenPanel, SeverityBadge, timeAgo,
 } from "@/components/ChannelPanels";
+import { MeshSimulator } from "@/components/MeshSimulator";
 
 export const Route = createFileRoute("/citizen")({
   head: () => ({
