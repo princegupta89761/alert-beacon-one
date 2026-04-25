@@ -9,12 +9,18 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as OfflineRouteImport } from './routes/offline'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as CitizenRouteImport } from './routes/citizen'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
+const OfflineRoute = OfflineRouteImport.update({
+  id: '/offline',
+  path: '/offline',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
@@ -47,6 +53,7 @@ export interface FileRoutesByFullPath {
   '/citizen': typeof CitizenRoute
   '/dashboard': typeof DashboardRoute
   '/login': typeof LoginRoute
+  '/offline': typeof OfflineRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +61,7 @@ export interface FileRoutesByTo {
   '/citizen': typeof CitizenRoute
   '/dashboard': typeof DashboardRoute
   '/login': typeof LoginRoute
+  '/offline': typeof OfflineRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,13 +70,21 @@ export interface FileRoutesById {
   '/citizen': typeof CitizenRoute
   '/dashboard': typeof DashboardRoute
   '/login': typeof LoginRoute
+  '/offline': typeof OfflineRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/citizen' | '/dashboard' | '/login'
+  fullPaths: '/' | '/about' | '/citizen' | '/dashboard' | '/login' | '/offline'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/citizen' | '/dashboard' | '/login'
-  id: '__root__' | '/' | '/about' | '/citizen' | '/dashboard' | '/login'
+  to: '/' | '/about' | '/citizen' | '/dashboard' | '/login' | '/offline'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/citizen'
+    | '/dashboard'
+    | '/login'
+    | '/offline'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -77,10 +93,18 @@ export interface RootRouteChildren {
   CitizenRoute: typeof CitizenRoute
   DashboardRoute: typeof DashboardRoute
   LoginRoute: typeof LoginRoute
+  OfflineRoute: typeof OfflineRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/offline': {
+      id: '/offline'
+      path: '/offline'
+      fullPath: '/offline'
+      preLoaderRoute: typeof OfflineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/login': {
       id: '/login'
       path: '/login'
@@ -125,6 +149,7 @@ const rootRouteChildren: RootRouteChildren = {
   CitizenRoute: CitizenRoute,
   DashboardRoute: DashboardRoute,
   LoginRoute: LoginRoute,
+  OfflineRoute: OfflineRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
